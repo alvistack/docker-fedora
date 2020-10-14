@@ -4,6 +4,12 @@
 
 ### Major Changes
 
+## 32-4alvistack3 - 2020-10-14
+
+### Major Changes
+
+  - Refine Molecule matrix
+
 ## 32-4alvistack1 - 2020-09-07
 
   - Fedora 32 based
