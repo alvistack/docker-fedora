@@ -11,7 +11,7 @@ Learn more about Fedora: <https://www.fedora.org/>
 
 ## Supported Tags and Respective `Dockerfile` Links
 
-  - [`32`, `latest`](https://github.com/alvistack/docker-fedora/blob/master/molecule/32/Dockerfile.j2)
+  - [`32`, `latest`](https://github.com/alvistack/docker-fedora/blob/master/packer/32/packer.json)
 
 ## Overview
 
@@ -19,8 +19,7 @@ This Docker container makes it easy to get an instance of SSHD up and running wi
 
 Based on [Official Fedora Docker Image](https://hub.docker.com/_/fedora/) with some minor hack:
 
-  - Minimized `Dockerfile` for meta data definition
-  - Provision by Ansible and Molecule Docker driver in single layer
+  - Packaging by Packer Docker builder and Ansible provisioner in single layer
   - Handle `ENTRYPOINT` with [catatonit](https://github.com/openSUSE/catatonit)
   - Handle `CMD` with SSHD
 
