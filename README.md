@@ -9,7 +9,7 @@ Fedora Linux is a community-supported distribution derived from sources freely p
 
 Learn more about Fedora: <https://www.fedora.org/>
 
-## Supported Tags and Respective `Dockerfile` Links
+## Supported Tags and Respective Packer Template Links
 
   - [`32`, `latest`](https://github.com/alvistack/docker-fedora/blob/master/packer/32/packer.json)
 
