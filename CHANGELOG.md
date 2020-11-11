@@ -1,9 +1,11 @@
 # Docker Image Packaging for Fedora
 
-## 32-XalvistackY - TBC
+## 33-XalvistackY - TBC
 
 ### Major Changes
 
+  - Support Fedora 33
+  - Remove Fedora 32 support
   - Revamp with Packer
 
 ## 32-4alvistack3 - 2020-10-14
