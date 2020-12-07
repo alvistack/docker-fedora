@@ -11,7 +11,7 @@ Learn more about Fedora: <https://www.fedora.org/>
 
 ## Supported Tags and Respective Packer Template Links
 
-  - [`33`, `latest`](https://github.com/alvistack/docker-fedora/blob/master/packer/33/packer.json)
+  - [`33`, `latest`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-33/packer.json)
 
 ## Overview
 
