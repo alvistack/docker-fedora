@@ -1,6 +1,6 @@
 # Docker Image Packaging for Fedora
 
-[![Travis](https://img.shields.io/travis/com/alvistack/docker-fedora.svg)](https://travis-ci.com/alvistack/docker-fedora)
+[![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/alvistack/docker-fedora/master)](https://gitlab.com/alvistack/docker-fedora/-/pipelines)
 [![GitHub release](https://img.shields.io/github/release/alvistack/docker-fedora.svg)](https://github.com/alvistack/docker-fedora/releases)
 [![GitHub license](https://img.shields.io/github/license/alvistack/docker-fedora.svg)](https://github.com/alvistack/docker-fedora/blob/master/LICENSE)
 [![Docker Pulls](https://img.shields.io/docker/pulls/alvistack/fedora.svg)](https://hub.docker.com/r/alvistack/fedora/)
