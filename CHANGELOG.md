@@ -4,6 +4,10 @@
 
 ### Major Changes
 
+## 33-4alvistack1 - 2020-12-09
+
+### Major Changes
+
   - Migrate from Travis CI to GitLab CI
   - Support Fedora 33
   - Remove Fedora 32 support
