@@ -1,9 +1,9 @@
 # Docker Image Packaging for Fedora
 
-[![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/alvistack/docker-fedora/master)](https://gitlab.com/alvistack/docker-fedora/-/pipelines)
+[![GitLab pipeline status](https://img.shields.io/gitlab/pipeline/alvistack/docker-fedora/master)](https://gitlab.com/alvistack/docker-fedora/-/pipelines)
 [![GitHub release](https://img.shields.io/github/release/alvistack/docker-fedora.svg)](https://github.com/alvistack/docker-fedora/releases)
 [![GitHub license](https://img.shields.io/github/license/alvistack/docker-fedora.svg)](https://github.com/alvistack/docker-fedora/blob/master/LICENSE)
-[![Docker Pulls](https://img.shields.io/docker/pulls/alvistack/fedora.svg)](https://hub.docker.com/r/alvistack/fedora/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/alvistack/fedora-33.svg)](https://hub.docker.com/r/alvistack/fedora-33)
 
 Fedora Linux is a community-supported distribution derived from sources freely provided to the public by Red Hat for Red Hat Enterprise Linux (RHEL).
 
@@ -11,7 +11,8 @@ Learn more about Fedora: <https://www.fedora.org/>
 
 ## Supported Tags and Respective Packer Template Links
 
-  - [`33`, `latest`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-33/packer.json)
+  - [`alvistack/fedora-33`](https://hub.docker.com/r/alvistack/fedora-33)
+      - [`packer/docker-33/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-33/packer.json)
 
 ## Overview
 
@@ -58,13 +59,13 @@ Now you could SSH to it as normal:
 
 ## Versioning
 
-### `alvistack/fedora:latest`
+### `YYYYMMDD.Y.Z`
 
-The `latest` tag matches the most recent [GitHub Release](https://github.com/alvistack/docker-fedora/releases) of this repository. Thus using `alvistack/fedora:latest` or `alvistack/fedora` will ensure you are running the most up to date stable version of this image.
+Release tags could be find from [GitHub Release](https://github.com/alvistack/docker-fedora/releases) of this repository. Thus using these tags will ensure you are running the most up to date stable version of this image.
 
-### `alvistack/fedora:<version>`
+### `YYYYMMDD.0.0`
 
-The version tags are rolling release rebuild by [Travis](https://travis-ci.com/alvistack/docker-fedora) in weekly basis. Thus using these tags will ensure you are running the latest packages provided by the base image project.
+Version tags ended with `.0.0` are rolling release rebuild by [GitLab pipeline](https://gitlab.com/alvistack/docker-fedora/-/pipelines) in weekly basis. Thus using these tags will ensure you are running the latest packages provided by the base image project.
 
 ## License
 
