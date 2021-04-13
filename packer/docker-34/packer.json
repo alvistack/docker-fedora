@@ -13,7 +13,7 @@
         "CMD [\"/usr/sbin/sshd\", \"-eD\"]"
       ],
       "commit": true,
-      "image": "fedora:33",
+      "image": "fedora:34",
       "type": "docker"
     }
   ],

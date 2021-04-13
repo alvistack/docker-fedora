@@ -4,6 +4,9 @@
 
 ### Major Changes
 
+  - Sync structure with `alvistack/vagrant-fedora`
+  - Support Fedora 34
+
 ## 20210313.1.1 - 2021-03-13
 
 ### Major Changes
