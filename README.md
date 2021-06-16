@@ -4,9 +4,7 @@
 [![GitHub release](https://img.shields.io/github/release/alvistack/docker-fedora.svg)](https://github.com/alvistack/docker-fedora/releases)
 [![GitHub license](https://img.shields.io/github/license/alvistack/docker-fedora.svg)](https://github.com/alvistack/docker-fedora/blob/master/LICENSE)
 [![Docker Pulls](https://img.shields.io/docker/pulls/alvistack/fedora-33.svg)](https://hub.docker.com/r/alvistack/fedora-33)
-
 Fedora is a Linux distribution developed by the community-supported Fedora Project which is sponsored primarily by Red Hat, a subsidiary of IBM, with additional support from other companies. Fedora contains software distributed under various free and open-source licenses and aims to be on the leading edge of free technologies. Fedora is the upstream source of the commercial Red Hat Enterprise Linux distribution, and subsequently CentOS as well.
-
 Learn more about Fedora: <https://getfedora.org/>
 
 ## Supported Tags and Respective Packer Template Links
@@ -19,7 +17,6 @@ Learn more about Fedora: <https://getfedora.org/>
 ## Overview
 
 This Docker container makes it easy to get an instance of SSHD up and running with Fedora.
-
 Based on [Official Fedora Docker Image](https://hub.docker.com/_/fedora/) with some minor hack:
 
   - Packaging by Packer Docker builder and Ansible provisioner in single layer
@@ -29,35 +26,25 @@ Based on [Official Fedora Docker Image](https://hub.docker.com/_/fedora/) with s
 ### Quick Start
 
 Start SSHD:
-
-    # Pull latest image
-    docker pull alvistack/fedora-33
-    
-    # Run as detach
-    docker run \
-        -itd \
-        --name fedora \
-        --publish 2222:22 \
-        alvistack/fedora-33
-
+\# Pull latest image
+docker pull alvistack/fedora-33
+\# Run as detach
+docker run   
+\-itd   
+\--name fedora   
+\--publish 2222:22   
+alvistack/fedora-33
 **Success**. SSHD is now available on port `2222`.
-
 Because this container **DIDN'T** handle the generation of root password, so you should set it up manually with `pwgen` by:
-
-    # Generate password with pwgen
-    PASSWORD=$(docker exec -i fedora pwgen -cnyB1); echo $PASSWORD
-    
-    # Inject the generated password
-    echo "root:$PASSWORD" | docker exec -i fedora chpasswd
-
+\# Generate password with pwgen
+PASSWORD=$(docker exec -i fedora pwgen -cnyB1); echo $PASSWORD
+\# Inject the generated password
+echo "root:$PASSWORD" | docker exec -i fedora chpasswd
 Alternatively, you could inject your own SSH public key into container's authorized\_keys by:
-
-    # Inject your own SSH public key
-    (docker exec -i fedora sh -c "cat >> /root/.ssh/authorized_keys") < ~/.ssh/id_rsa.pub
-
+\# Inject your own SSH public key
+(docker exec -i fedora sh -c "cat \>\> /root/.ssh/authorized\_keys") \< \~/.ssh/id\_rsa.pub
 Now you could SSH to it as normal:
-
-    ssh root@localhost -p 2222
+ssh root@localhost -p 2222
 
 ## Versioning
 
