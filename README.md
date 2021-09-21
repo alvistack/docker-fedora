@@ -1,5 +1,7 @@
 # Docker Image Packaging for Fedora
 
+<img src="/alvistack.svg" width="75" alt="AlviStack">
+
 [![GitLab pipeline status](https://img.shields.io/gitlab/pipeline/alvistack/docker-fedora/master)](https://gitlab.com/alvistack/docker-fedora/-/pipelines)
 [![GitHub release](https://img.shields.io/github/release/alvistack/docker-fedora.svg)](https://github.com/alvistack/docker-fedora/releases)
 [![GitHub license](https://img.shields.io/github/license/alvistack/docker-fedora.svg)](https://github.com/alvistack/docker-fedora/blob/master/LICENSE)
