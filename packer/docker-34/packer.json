@@ -14,6 +14,7 @@
       ],
       "commit": true,
       "image": "fedora:34",
+      "privileged": true,
       "type": "docker"
     }
   ],
