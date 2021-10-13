@@ -105,31 +105,6 @@ default:
   before_script:
     - *script-git-submodule
 
-build:docker-35:
-  <<: *job-packer-build
-  stage: build
-  cache:
-    key: "$CI_PIPELINE_ID-docker-35"
-    paths:
-      - packer/*/output-docker
-  variables:
-    _PACKER_BUILDER_PROVIDER: "docker"
-    _PACKER_BUILDER_VERSION: "35"
-
-deploy:docker-35:
-  <<: *job-docker-push
-  stage: deploy
-  cache:
-    key: "$CI_PIPELINE_ID-docker-35"
-    paths:
-      - packer/*/output-docker
-    policy: pull
-  variables:
-    _PACKER_BUILDER_PROVIDER: "docker"
-    _PACKER_BUILDER_VERSION: "35"
-  needs:
-    - build:docker-35
-
 build:docker-34:
   <<: *job-packer-build
   stage: build
