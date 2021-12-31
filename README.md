@@ -3,7 +3,7 @@
 <img src="/alvistack.svg" width="75" alt="AlviStack">
 
 [![GitLab pipeline status](https://img.shields.io/gitlab/pipeline/alvistack/docker-fedora/master)](https://gitlab.com/alvistack/docker-fedora/-/pipelines)
-[![GitHub release](https://img.shields.io/github/release/alvistack/docker-fedora.svg)](https://github.com/alvistack/docker-fedora/releases)
+[![GitHub tag](https://img.shields.io/github/tag/alvistack/docker-fedora.svg)](https://github.com/alvistack/docker-fedora/tags)
 [![GitHub license](https://img.shields.io/github/license/alvistack/docker-fedora.svg)](https://github.com/alvistack/docker-fedora/blob/master/LICENSE)
 [![Docker Pulls](https://img.shields.io/docker/pulls/alvistack/fedora-34.svg)](https://hub.docker.com/r/alvistack/fedora-34)
 
@@ -65,7 +65,7 @@ Now you could SSH to it as normal:
 
 ### `YYYYMMDD.Y.Z`
 
-Release tags could be find from [GitHub Release](https://github.com/alvistack/docker-fedora/releases) of this repository. Thus using these tags will ensure you are running the most up to date stable version of this image.
+Release tags could be find from [GitHub Release](https://github.com/alvistack/docker-fedora/tags) of this repository. Thus using these tags will ensure you are running the most up to date stable version of this image.
 
 ### `YYYYMMDD.0.0`
 
