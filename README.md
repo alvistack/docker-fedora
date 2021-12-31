@@ -13,6 +13,8 @@ Learn more about Fedora: <https://getfedora.org/>
 
 ## Supported Tags and Respective Packer Template Links
 
+  - [`alvistack/fedora-rawhide`](https://hub.docker.com/r/alvistack/fedora-rawhide)
+      - [`packer/docker-rawhide/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-rawhide/packer.json)
   - [`alvistack/fedora-35`](https://hub.docker.com/r/alvistack/fedora-35)
       - [`packer/docker-35/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-35/packer.json)
   - [`alvistack/fedora-34`](https://hub.docker.com/r/alvistack/fedora-34)
