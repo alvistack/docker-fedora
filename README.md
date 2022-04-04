@@ -5,7 +5,7 @@
 [![GitLab pipeline status](https://img.shields.io/gitlab/pipeline/alvistack/docker-fedora/master)](https://gitlab.com/alvistack/docker-fedora/-/pipelines)
 [![GitHub tag](https://img.shields.io/github/tag/alvistack/docker-fedora.svg)](https://github.com/alvistack/docker-fedora/tags)
 [![GitHub license](https://img.shields.io/github/license/alvistack/docker-fedora.svg)](https://github.com/alvistack/docker-fedora/blob/master/LICENSE)
-[![Docker Pulls](https://img.shields.io/docker/pulls/alvistack/fedora-34.svg)](https://hub.docker.com/r/alvistack/fedora-34)
+[![Docker Pulls](https://img.shields.io/docker/pulls/alvistack/fedora-35.svg)](https://hub.docker.com/r/alvistack/fedora-35)
 
 Fedora is a Linux distribution developed by the community-supported Fedora Project which is sponsored primarily by Red Hat, a subsidiary of IBM, with additional support from other companies. Fedora contains software distributed under various free and open-source licenses and aims to be on the leading edge of free technologies. Fedora is the upstream source of the commercial Red Hat Enterprise Linux distribution, and subsequently CentOS as well.
 
@@ -15,6 +15,8 @@ Learn more about Fedora: <https://getfedora.org/>
 
   - [`alvistack/fedora-rawhide`](https://hub.docker.com/r/alvistack/fedora-rawhide)
       - [`packer/docker-rawhide/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-rawhide/packer.json)
+  - [`alvistack/fedora-36`](https://hub.docker.com/r/alvistack/fedora-36)
+      - [`packer/docker-36/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-36/packer.json)
   - [`alvistack/fedora-35`](https://hub.docker.com/r/alvistack/fedora-35)
       - [`packer/docker-35/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-35/packer.json)
   - [`alvistack/fedora-34`](https://hub.docker.com/r/alvistack/fedora-34)
@@ -35,14 +37,14 @@ Based on [Official Fedora Docker Image](https://hub.docker.com/_/fedora/) with s
 Start SSHD:
 
     # Pull latest image
-    docker pull alvistack/fedora-34
+    docker pull alvistack/fedora-35
     
     # Run as detach
     docker run \
         -itd \
         --name fedora \
         --publish 2222:22 \
-        alvistack/fedora-34
+        alvistack/fedora-35
 
 **Success**. SSHD is now available on port `2222`.
 
