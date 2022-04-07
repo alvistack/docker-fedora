@@ -36,7 +36,7 @@
         "echo \"zchunk=False\" >> /etc/dnf/dnf.conf",
         "dnf makecache",
         "dnf update -y",
-        "dnf install -y ca-certificates curl gcc glibc-common glibc-langpack-en iproute python3 sudo"
+        "dnf install -y ca-certificates curl gcc glibc-common glibc-langpack-en iproute python3 sudo yum-utils"
       ],
       "type": "shell"
     },
