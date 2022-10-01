@@ -31,6 +31,17 @@
     sh -x -c "ansible --version"
     sh -x -c "ansible-lint --version"
 
+.script-bootstrap-molecule: &script-bootstrap-molecule
+  - |
+    if ! [[ -x "$(command -v molecule)" ]]; then
+      export DEBIAN_FRONTEND="noninteractive"
+      echo "deb http://downloadcontent.opensuse.org/repositories/home:/alvistack/xUbuntu_22.04/ /" | sudo tee /etc/apt/sources.list.d/home:alvistack.list
+      curl -fsSL https://downloadcontent.opensuse.org/repositories/home:alvistack/xUbuntu_22.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_alvistack.gpg > /dev/null
+      sudo -E apt-get update
+      sudo -E apt-get install -y python3-molecule python3-molecule-docker python3-molecule-vagrant
+    fi
+    sh -x -c "molecule --version"
+
 .script-bootstrap-docker: &script-bootstrap-docker
   - |
     if ! [[ -x "$(command -v docker)" ]]; then
@@ -62,8 +73,20 @@
 .script-packer-build: &script-packer-build
   - |
     echo $DOCKER_HUB_TOKEN | sudo -E docker login --username=$DOCKER_HUB_USERNAME --password-stdin
-    cd $CI_PROJECT_DIR/packer/$_PACKER_BUILDER_PROVIDER-$_PACKER_BUILDER_VERSION
+    cd $CI_PROJECT_DIR/packer/$_IMAGE-$_PROVIDER
     sudo -E packer build packer.json
+
+.script-docker-load: &script-docker-load
+  - |
+    zcat $CI_PROJECT_DIR/packer/$_IMAGE-$_PROVIDER/output-docker/image.tar.gz | sudo -E docker load
+    export _ORG="$CI_PROJECT_NAMESPACE"
+    export _ID="$(sudo -E docker images | awk '{ print $3 }' | awk 'NR==2')"
+    sudo -E docker tag $_ID $_ORG/$_IMAGE:latest
+
+.script-molecule-test: &script-molecule-test
+  - |
+    export _MOLECULE_INSTANCE_NAME="$(pwgen -1AB 12)"
+    sudo -E molecule test -s $_IMAGE-$_PROVIDER
 
 .script-docker-push: &script-docker-push
   - |
@@ -75,10 +98,7 @@
       exit 0
     fi
     echo $DOCKER_HUB_TOKEN | sudo -E docker login --username=$DOCKER_HUB_USERNAME --password-stdin
-    cd $CI_PROJECT_DIR/packer/$_PACKER_BUILDER_PROVIDER-$_PACKER_BUILDER_VERSION
     export _ORG="$CI_PROJECT_NAMESPACE"
-    export _IMAGE="$(echo $CI_PROJECT_NAME | sed 's/^docker-//g')-$_PACKER_BUILDER_VERSION"
-    zcat output-docker/image.tar.gz | sudo -E docker load
     export _ID="$(sudo -E docker images | awk '{ print $3 }' | awk 'NR==2')"
     sudo -E docker tag $_ID $_ORG/$_IMAGE:latest
     sudo -E docker push $_ORG/$_IMAGE:latest
@@ -94,9 +114,19 @@
     - *script-linters
     - *script-packer-build
 
+.job-molecule-test: &job-molecule-test
+  script:
+    - *script-bootstrap-python
+    - *script-bootstrap-ansible
+    - *script-bootstrap-molecule
+    - *script-bootstrap-docker
+    - *script-docker-load
+    - *script-molecule-test
+
 .job-docker-push: &job-docker-push
   script:
     - *script-bootstrap-docker
+    - *script-docker-load
     - *script-docker-push
 
 default:
@@ -104,102 +134,158 @@ default:
   before_script:
     - *script-git-submodule
 
-build:docker-rawhide:
+build:fedora-rawhide-docker:
   <<: *job-packer-build
   stage: build
   cache:
-    key: "$CI_PIPELINE_ID-docker-rawhide"
+    key: "$CI_PIPELINE_ID-fedora-rawhide-docker"
     paths:
       - packer/*/output-docker
   variables:
-    _PACKER_BUILDER_PROVIDER: "docker"
-    _PACKER_BUILDER_VERSION: "rawhide"
+    _IMAGE: "fedora-rawhide"
+    _PROVIDER: "docker"
 
-deploy:docker-rawhide:
-  <<: *job-docker-push
-  stage: deploy
+test:fedora-rawhide-docker:
+  <<: *job-molecule-test
+  stage: test
   cache:
-    key: "$CI_PIPELINE_ID-docker-rawhide"
+    key: "$CI_PIPELINE_ID-fedora-rawhide-docker"
     paths:
       - packer/*/output-docker
     policy: pull
   variables:
-    _PACKER_BUILDER_PROVIDER: "docker"
-    _PACKER_BUILDER_VERSION: "rawhide"
+    _IMAGE: "fedora-rawhide"
+    _PROVIDER: "docker"
   needs:
-    - build:docker-rawhide
+    - build:fedora-rawhide-docker
 
-build:docker-37:
-  <<: *job-packer-build
-  stage: build
-  cache:
-    key: "$CI_PIPELINE_ID-docker-37"
-    paths:
-      - packer/*/output-docker
-  variables:
-    _PACKER_BUILDER_PROVIDER: "docker"
-    _PACKER_BUILDER_VERSION: "37"
-
-deploy:docker-37:
+deploy:fedora-rawhide-docker:
   <<: *job-docker-push
   stage: deploy
   cache:
-    key: "$CI_PIPELINE_ID-docker-37"
+    key: "$CI_PIPELINE_ID-fedora-rawhide-docker"
     paths:
       - packer/*/output-docker
     policy: pull
   variables:
-    _PACKER_BUILDER_PROVIDER: "docker"
-    _PACKER_BUILDER_VERSION: "37"
+    _IMAGE: "fedora-rawhide"
+    _PROVIDER: "docker"
   needs:
-    - build:docker-37
+    - test:fedora-rawhide-docker
 
-build:docker-36:
+build:fedora-37-docker:
   <<: *job-packer-build
   stage: build
   cache:
-    key: "$CI_PIPELINE_ID-docker-36"
+    key: "$CI_PIPELINE_ID-fedora-37-docker"
     paths:
       - packer/*/output-docker
   variables:
-    _PACKER_BUILDER_PROVIDER: "docker"
-    _PACKER_BUILDER_VERSION: "36"
+    _IMAGE: "fedora-37"
+    _PROVIDER: "docker"
 
-deploy:docker-36:
-  <<: *job-docker-push
-  stage: deploy
+test:fedora-37-docker:
+  <<: *job-molecule-test
+  stage: test
   cache:
-    key: "$CI_PIPELINE_ID-docker-36"
+    key: "$CI_PIPELINE_ID-fedora-37-docker"
     paths:
       - packer/*/output-docker
     policy: pull
   variables:
-    _PACKER_BUILDER_PROVIDER: "docker"
-    _PACKER_BUILDER_VERSION: "36"
+    _IMAGE: "fedora-37"
+    _PROVIDER: "docker"
   needs:
-    - build:docker-36
+    - build:fedora-37-docker
 
-build:docker-35:
-  <<: *job-packer-build
-  stage: build
-  cache:
-    key: "$CI_PIPELINE_ID-docker-35"
-    paths:
-      - packer/*/output-docker
-  variables:
-    _PACKER_BUILDER_PROVIDER: "docker"
-    _PACKER_BUILDER_VERSION: "35"
-
-deploy:docker-35:
+deploy:fedora-37-docker:
   <<: *job-docker-push
   stage: deploy
   cache:
-    key: "$CI_PIPELINE_ID-docker-35"
+    key: "$CI_PIPELINE_ID-fedora-37-docker"
     paths:
       - packer/*/output-docker
     policy: pull
   variables:
-    _PACKER_BUILDER_PROVIDER: "docker"
-    _PACKER_BUILDER_VERSION: "35"
+    _IMAGE: "fedora-37"
+    _PROVIDER: "docker"
   needs:
-    - build:docker-35
+    - test:fedora-37-docker
+
+build:fedora-36-docker:
+  <<: *job-packer-build
+  stage: build
+  cache:
+    key: "$CI_PIPELINE_ID-fedora-36-docker"
+    paths:
+      - packer/*/output-docker
+  variables:
+    _IMAGE: "fedora-36"
+    _PROVIDER: "docker"
+
+test:fedora-36-docker:
+  <<: *job-molecule-test
+  stage: test
+  cache:
+    key: "$CI_PIPELINE_ID-fedora-36-docker"
+    paths:
+      - packer/*/output-docker
+    policy: pull
+  variables:
+    _IMAGE: "fedora-36"
+    _PROVIDER: "docker"
+  needs:
+    - build:fedora-36-docker
+
+deploy:fedora-36-docker:
+  <<: *job-docker-push
+  stage: deploy
+  cache:
+    key: "$CI_PIPELINE_ID-fedora-36-docker"
+    paths:
+      - packer/*/output-docker
+    policy: pull
+  variables:
+    _IMAGE: "fedora-36"
+    _PROVIDER: "docker"
+  needs:
+    - test:fedora-36-docker
+
+build:fedora-35-docker:
+  <<: *job-packer-build
+  stage: build
+  cache:
+    key: "$CI_PIPELINE_ID-fedora-35-docker"
+    paths:
+      - packer/*/output-docker
+  variables:
+    _IMAGE: "fedora-35"
+    _PROVIDER: "docker"
+
+test:fedora-35-docker:
+  <<: *job-molecule-test
+  stage: test
+  cache:
+    key: "$CI_PIPELINE_ID-fedora-35-docker"
+    paths:
+      - packer/*/output-docker
+    policy: pull
+  variables:
+    _IMAGE: "fedora-35"
+    _PROVIDER: "docker"
+  needs:
+    - build:fedora-35-docker
+
+deploy:fedora-35-docker:
+  <<: *job-docker-push
+  stage: deploy
+  cache:
+    key: "$CI_PIPELINE_ID-fedora-35-docker"
+    paths:
+      - packer/*/output-docker
+    policy: pull
+  variables:
+    _IMAGE: "fedora-35"
+    _PROVIDER: "docker"
+  needs:
+    - test:fedora-35-docker
