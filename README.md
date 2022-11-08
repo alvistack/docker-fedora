@@ -13,14 +13,14 @@ Learn more about Fedora: <https://getfedora.org/>
 
 ## Supported Tags and Respective Packer Template Links
 
-  - [`alvistack/fedora-rawhide`](https://hub.docker.com/r/alvistack/fedora-rawhide)
-      - [`packer/docker-rawhide/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-rawhide/packer.json)
-  - [`alvistack/fedora-37`](https://hub.docker.com/r/alvistack/fedora-37)
-      - [`packer/docker-37/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-37/packer.json)
-  - [`alvistack/fedora-36`](https://hub.docker.com/r/alvistack/fedora-36)
-      - [`packer/docker-36/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-36/packer.json)
-  - [`alvistack/fedora-35`](https://hub.docker.com/r/alvistack/fedora-35)
-      - [`packer/docker-35/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-35/packer.json)
+-   [`alvistack/fedora-rawhide`](https://hub.docker.com/r/alvistack/fedora-rawhide)
+    -   [`packer/docker-rawhide/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-rawhide/packer.json)
+-   [`alvistack/fedora-37`](https://hub.docker.com/r/alvistack/fedora-37)
+    -   [`packer/docker-37/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-37/packer.json)
+-   [`alvistack/fedora-36`](https://hub.docker.com/r/alvistack/fedora-36)
+    -   [`packer/docker-36/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-36/packer.json)
+-   [`alvistack/fedora-35`](https://hub.docker.com/r/alvistack/fedora-35)
+    -   [`packer/docker-35/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-35/packer.json)
 
 ## Overview
 
@@ -28,9 +28,9 @@ This Docker container makes it easy to get an instance of SSHD up and running wi
 
 Based on [Official Fedora Docker Image](https://hub.docker.com/_/fedora/) with some minor hack:
 
-  - Packaging by Packer Docker builder and Ansible provisioner in single layer
-  - Handle `ENTRYPOINT` with [catatonit](https://github.com/openSUSE/catatonit)
-  - Handle `CMD` with SSHD
+-   Packaging by Packer Docker builder and Ansible provisioner in single layer
+-   Handle `ENTRYPOINT` with [catatonit](https://github.com/openSUSE/catatonit)
+-   Handle `CMD` with SSHD
 
 ### Quick Start
 
@@ -38,7 +38,7 @@ Start SSHD:
 
     # Pull latest image
     docker pull alvistack/fedora-36
-    
+
     # Run as detach
     docker run \
         -itd \
@@ -52,11 +52,11 @@ Because this container **DIDN'T** handle the generation of root password, so you
 
     # Generate password with pwgen
     PASSWORD=$(docker exec -i fedora pwgen -cnyB1); echo $PASSWORD
-    
+
     # Inject the generated password
     echo "root:$PASSWORD" | docker exec -i fedora chpasswd
 
-Alternatively, you could inject your own SSH public key into container's authorized\_keys by:
+Alternatively, you could inject your own SSH public key into container's authorized_keys by:
 
     # Inject your own SSH public key
     (docker exec -i fedora sh -c "cat >> /root/.ssh/authorized_keys") < ~/.ssh/id_rsa.pub
@@ -77,11 +77,11 @@ Version tags ended with `.0.0` are rolling release rebuild by [GitLab pipeline](
 
 ## License
 
-  - Code released under [Apache License 2.0](LICENSE)
-  - Docs released under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
+-   Code released under [Apache License 2.0](LICENSE)
+-   Docs released under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
 
 ## Author Information
 
-  - Wong Hoi Sing Edison
-      - <https://twitter.com/hswong3i>
-      - <https://github.com/hswong3i>
+-   Wong Hoi Sing Edison
+    -   <https://twitter.com/hswong3i>
+    -   <https://github.com/hswong3i>
