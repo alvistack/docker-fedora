@@ -9,7 +9,7 @@ tag](https://img.shields.io/github/tag/alvistack/docker-fedora.svg)](https://git
 [![GitHub
 license](https://img.shields.io/github/license/alvistack/docker-fedora.svg)](https://github.com/alvistack/docker-fedora/blob/master/LICENSE)
 [![Docker
-Pulls](https://img.shields.io/docker/pulls/alvistack/fedora-38.svg)](https://hub.docker.com/r/alvistack/fedora-38)
+Pulls](https://img.shields.io/docker/pulls/alvistack/fedora-39.svg)](https://hub.docker.com/r/alvistack/fedora-39)
 
 Fedora is a Linux distribution developed by the community-supported
 Fedora Project which is sponsored primarily by Red Hat, a subsidiary of
@@ -25,6 +25,8 @@ Learn more about Fedora: <https://getfedora.org/>
 
 -   [`alvistack/fedora-rawhide`](https://hub.docker.com/r/alvistack/fedora-rawhide)
     -   [`packer/docker-rawhide/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-rawhide/packer.json)
+-   [`alvistack/fedora-39`](https://hub.docker.com/r/alvistack/fedora-39)
+    -   [`packer/docker-39/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-39/packer.json)
 -   [`alvistack/fedora-38`](https://hub.docker.com/r/alvistack/fedora-38)
     -   [`packer/docker-38/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-38/packer.json)
 -   [`alvistack/fedora-37`](https://hub.docker.com/r/alvistack/fedora-37)
@@ -49,14 +51,14 @@ Image](https://hub.docker.com/_/fedora/) with some minor hack:
 Start SSHD:
 
     # Pull latest image
-    docker pull alvistack/fedora-38
+    docker pull alvistack/fedora-39
 
     # Run as detach
     docker run \
         -itd \
         --name fedora \
         --publish 2222:22 \
-        alvistack/fedora-38
+        alvistack/fedora-39
 
 **Success**. SSHD is now available on port `2222`.
 
