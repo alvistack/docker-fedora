@@ -138,24 +138,24 @@ build:fedora-rawhide-docker:
   <<: *job-packer-build
   stage: build
   cache:
-    key: "$CI_PIPELINE_ID-fedora-rawhide-docker"
+    key: $CI_PIPELINE_ID-fedora-rawhide-docker
     paths:
       - packer/*/output-docker
   variables:
-    _IMAGE: "fedora-rawhide"
-    _PROVIDER: "docker"
+    _IMAGE: fedora-rawhide
+    _PROVIDER: docker
 
 test:fedora-rawhide-docker:
   <<: *job-molecule-test
   stage: test
   cache:
-    key: "$CI_PIPELINE_ID-fedora-rawhide-docker"
+    key: $CI_PIPELINE_ID-fedora-rawhide-docker
     paths:
       - packer/*/output-docker
     policy: pull
   variables:
-    _IMAGE: "fedora-rawhide"
-    _PROVIDER: "docker"
+    _IMAGE: fedora-rawhide
+    _PROVIDER: docker
   needs:
     - build:fedora-rawhide-docker
 
@@ -163,13 +163,13 @@ deploy:fedora-rawhide-docker:
   <<: *job-docker-push
   stage: deploy
   cache:
-    key: "$CI_PIPELINE_ID-fedora-rawhide-docker"
+    key: $CI_PIPELINE_ID-fedora-rawhide-docker
     paths:
       - packer/*/output-docker
     policy: pull
   variables:
-    _IMAGE: "fedora-rawhide"
-    _PROVIDER: "docker"
+    _IMAGE: fedora-rawhide
+    _PROVIDER: docker
   needs:
     - test:fedora-rawhide-docker
 
@@ -177,24 +177,24 @@ build:fedora-39-docker:
   <<: *job-packer-build
   stage: build
   cache:
-    key: "$CI_PIPELINE_ID-fedora-39-docker"
+    key: $CI_PIPELINE_ID-fedora-39-docker
     paths:
       - packer/*/output-docker
   variables:
-    _IMAGE: "fedora-39"
-    _PROVIDER: "docker"
+    _IMAGE: fedora-39
+    _PROVIDER: docker
 
 test:fedora-39-docker:
   <<: *job-molecule-test
   stage: test
   cache:
-    key: "$CI_PIPELINE_ID-fedora-39-docker"
+    key: $CI_PIPELINE_ID-fedora-39-docker
     paths:
       - packer/*/output-docker
     policy: pull
   variables:
-    _IMAGE: "fedora-39"
-    _PROVIDER: "docker"
+    _IMAGE: fedora-39
+    _PROVIDER: docker
   needs:
     - build:fedora-39-docker
 
@@ -202,13 +202,13 @@ deploy:fedora-39-docker:
   <<: *job-docker-push
   stage: deploy
   cache:
-    key: "$CI_PIPELINE_ID-fedora-39-docker"
+    key: $CI_PIPELINE_ID-fedora-39-docker
     paths:
       - packer/*/output-docker
     policy: pull
   variables:
-    _IMAGE: "fedora-39"
-    _PROVIDER: "docker"
+    _IMAGE: fedora-39
+    _PROVIDER: docker
   needs:
     - test:fedora-39-docker
 
@@ -216,24 +216,24 @@ build:fedora-38-docker:
   <<: *job-packer-build
   stage: build
   cache:
-    key: "$CI_PIPELINE_ID-fedora-38-docker"
+    key: $CI_PIPELINE_ID-fedora-38-docker
     paths:
       - packer/*/output-docker
   variables:
-    _IMAGE: "fedora-38"
-    _PROVIDER: "docker"
+    _IMAGE: fedora-38
+    _PROVIDER: docker
 
 test:fedora-38-docker:
   <<: *job-molecule-test
   stage: test
   cache:
-    key: "$CI_PIPELINE_ID-fedora-38-docker"
+    key: $CI_PIPELINE_ID-fedora-38-docker
     paths:
       - packer/*/output-docker
     policy: pull
   variables:
-    _IMAGE: "fedora-38"
-    _PROVIDER: "docker"
+    _IMAGE: fedora-38
+    _PROVIDER: docker
   needs:
     - build:fedora-38-docker
 
@@ -241,12 +241,12 @@ deploy:fedora-38-docker:
   <<: *job-docker-push
   stage: deploy
   cache:
-    key: "$CI_PIPELINE_ID-fedora-38-docker"
+    key: $CI_PIPELINE_ID-fedora-38-docker
     paths:
       - packer/*/output-docker
     policy: pull
   variables:
-    _IMAGE: "fedora-38"
-    _PROVIDER: "docker"
+    _IMAGE: fedora-38
+    _PROVIDER: docker
   needs:
     - test:fedora-38-docker
