@@ -173,6 +173,45 @@ deploy:fedora-rawhide-docker:
   needs:
     - test:fedora-rawhide-docker
 
+build:fedora-40-docker:
+  <<: *job-packer-build
+  stage: build
+  cache:
+    key: $CI_PIPELINE_ID-fedora-40-docker
+    paths:
+      - packer/*/output-docker
+  variables:
+    _IMAGE: fedora-40
+    _PROVIDER: docker
+
+test:fedora-40-docker:
+  <<: *job-molecule-test
+  stage: test
+  cache:
+    key: $CI_PIPELINE_ID-fedora-40-docker
+    paths:
+      - packer/*/output-docker
+    policy: pull
+  variables:
+    _IMAGE: fedora-40
+    _PROVIDER: docker
+  needs:
+    - build:fedora-40-docker
+
+deploy:fedora-40-docker:
+  <<: *job-docker-push
+  stage: deploy
+  cache:
+    key: $CI_PIPELINE_ID-fedora-40-docker
+    paths:
+      - packer/*/output-docker
+    policy: pull
+  variables:
+    _IMAGE: fedora-40
+    _PROVIDER: docker
+  needs:
+    - test:fedora-40-docker
+
 build:fedora-39-docker:
   <<: *job-packer-build
   stage: build
