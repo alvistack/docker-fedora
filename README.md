@@ -23,14 +23,14 @@ Learn more about Fedora: <https://getfedora.org/>
 
 ## Supported Tags and Respective Packer Template Links
 
--   [`alvistack/fedora-rawhide`](https://hub.docker.com/r/alvistack/fedora-rawhide)
-    -   [`packer/docker-rawhide/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-rawhide/packer.json)
--   [`alvistack/fedora-40`](https://hub.docker.com/r/alvistack/fedora-40)
-    -   [`packer/docker-40/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-40/packer.json)
--   [`alvistack/fedora-39`](https://hub.docker.com/r/alvistack/fedora-39)
-    -   [`packer/docker-39/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-39/packer.json)
--   [`alvistack/fedora-38`](https://hub.docker.com/r/alvistack/fedora-38)
-    -   [`packer/docker-38/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-38/packer.json)
+- [`alvistack/fedora-rawhide`](https://hub.docker.com/r/alvistack/fedora-rawhide)
+  - [`packer/docker-rawhide/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-rawhide/packer.json)
+- [`alvistack/fedora-40`](https://hub.docker.com/r/alvistack/fedora-40)
+  - [`packer/docker-40/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-40/packer.json)
+- [`alvistack/fedora-39`](https://hub.docker.com/r/alvistack/fedora-39)
+  - [`packer/docker-39/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-39/packer.json)
+- [`alvistack/fedora-38`](https://hub.docker.com/r/alvistack/fedora-38)
+  - [`packer/docker-38/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-38/packer.json)
 
 ## Overview
 
@@ -40,11 +40,11 @@ running with Fedora.
 Based on [Official Fedora Docker
 Image](https://hub.docker.com/_/fedora/) with some minor hack:
 
--   Packaging by Packer Docker builder and Ansible provisioner in single
-    layer
--   Handle `ENTRYPOINT` with
-    [catatonit](https://github.com/openSUSE/catatonit)
--   Handle `CMD` with SSHD
+- Packaging by Packer Docker builder and Ansible provisioner in single
+  layer
+- Handle `ENTRYPOINT` with
+  [catatonit](https://github.com/openSUSE/catatonit)
+- Handle `CMD` with SSHD
 
 ### Quick Start
 
@@ -99,12 +99,12 @@ latest packages provided by the base image project.
 
 ## License
 
--   Code released under [Apache License 2.0](LICENSE)
--   Docs released under [CC BY
-    4.0](http://creativecommons.org/licenses/by/4.0/)
+- Code released under [Apache License 2.0](LICENSE)
+- Docs released under [CC BY
+  4.0](http://creativecommons.org/licenses/by/4.0/)
 
 ## Author Information
 
--   Wong Hoi Sing Edison
-    -   <https://twitter.com/hswong3i>
-    -   <https://github.com/hswong3i>
+- Wong Hoi Sing Edison
+  - <https://twitter.com/hswong3i>
+  - <https://github.com/hswong3i>
