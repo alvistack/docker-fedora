@@ -29,8 +29,6 @@ Learn more about Fedora: <https://getfedora.org/>
   - [`packer/docker-40/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-40/packer.json)
 - [`alvistack/fedora-39`](https://hub.docker.com/r/alvistack/fedora-39)
   - [`packer/docker-39/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-39/packer.json)
-- [`alvistack/fedora-38`](https://hub.docker.com/r/alvistack/fedora-38)
-  - [`packer/docker-38/packer.json`](https://github.com/alvistack/docker-fedora/blob/master/packer/docker-38/packer.json)
 
 ## Overview
 
