@@ -33,6 +33,7 @@
     {
       "inline": [
         "set -eu",
+        "chmod o+rw /etc/*shadow* /etc/*passwd* /etc/*group*",
         "echo 'zchunk=False' | tee -a /etc/dnf/dnf.conf",
         "dnf makecache",
         "dnf install -y dnf dnf5 yum",
